@@ -30,4 +30,33 @@ export default (ctx) => ({
   typedList(entries) {
     return entries.map(ctx.helpers.typedListItem).join("\n");
   },
+  stabilityBlockquote(comment) {
+    if (!comment) return null;
+    const deprecated = comment.blockTags?.find((t) => t.tag === "@deprecated");
+    const isExperimental =
+      comment.modifierTags?.has("@experimental") ||
+      comment.modifierTags?.has("@beta");
+    const legacy = comment.blockTags?.find((t) => t.tag === "@legacy");
+
+    if (deprecated) {
+      const message = deprecated.content?.length
+        ? ctx.helpers.getCommentParts(deprecated.content).trim()
+        : "";
+      return message
+        ? `> Stability: 0 - Deprecated: ${message}`
+        : `> Stability: 0 - Deprecated`;
+    }
+    if (isExperimental) {
+      return `> Stability: 1 - Experimental`;
+    }
+    if (legacy) {
+      const message = legacy.content?.length
+        ? ctx.helpers.getCommentParts(legacy.content).trim()
+        : "";
+      return message
+        ? `> Stability: 3 - Legacy: ${message}`
+        : `> Stability: 3 - Legacy`;
+    }
+    return null;
+  },
 });

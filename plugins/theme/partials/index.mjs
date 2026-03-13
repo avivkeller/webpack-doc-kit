@@ -36,35 +36,7 @@ export default (ctx) => ({
       ? model.comment
       : model.comment || model.parent?.comment;
 
-    // Stability blockquote
-    const stability = (() => {
-      if (!comment) return null;
-      const deprecated = comment.blockTags?.find((t) => t.tag === "@deprecated");
-      const experimental =
-        comment.blockTags?.find((t) => t.tag === "@experimental") ??
-        comment.blockTags?.find((t) => t.tag === "@beta");
-      const legacy = comment.blockTags?.find((t) => t.tag === "@legacy");
-
-      if (deprecated) {
-        const desc = deprecated.content?.length
-          ? ctx.helpers.getCommentParts(deprecated.content)
-          : "Deprecated";
-        return `> Stability: 0 - Deprecated: ${desc}`;
-      }
-      if (experimental) {
-        const desc = experimental.content?.length
-          ? `: ${ctx.helpers.getCommentParts(experimental.content)}`
-          : "";
-        return `> Stability: 1 - Experimental${desc}`;
-      }
-      if (legacy) {
-        const desc = legacy.content?.length
-          ? `: ${ctx.helpers.getCommentParts(legacy.content)}`
-          : "";
-        return `> Stability: 3 - Legacy${desc}`;
-      }
-      return null;
-    })();
+    const stability = ctx.helpers.stabilityBlockquote(comment);
 
     return [
       stability,
@@ -85,6 +57,7 @@ export default (ctx) => ({
       comment &&
         ctx.partials.comment(comment, {
           headingLevel: options.headingLevel,
+          showTags: false,  // ← prevents duplicate ###### Deprecated
         }),
     ]
       .filter((x) => (typeof x === "string" ? x : Boolean(x)))
