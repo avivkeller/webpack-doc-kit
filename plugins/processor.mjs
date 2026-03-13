@@ -27,6 +27,33 @@ export function load(app) {
       .forEach((namespace) =>
         context.project.mergeReflections(namespace, namespace.parent),
       );
+
+    // Append examples to the body of members
+    context.project
+      .getReflectionsByKind(ReflectionKind.All)
+      .forEach((reflection) => {
+        if (reflection.comment) {
+          const examples = reflection.comment.blockTags.filter(
+            (tag) => tag.tag === "@example",
+          );
+          if (examples.length > 0) {
+            if (reflection.comment.summary.length > 0) {
+              reflection.comment.summary.push({ kind: "text", text: "\n\n" });
+            }
+
+            examples.forEach((example, index) => {
+              reflection.comment.summary.push(...example.content);
+              if (index < examples.length - 1) {
+                reflection.comment.summary.push({ kind: "text", text: "\n\n" });
+              }
+            });
+
+            reflection.comment.blockTags = reflection.comment.blockTags.filter(
+              (tag) => tag.tag !== "@example",
+            );
+          }
+        }
+      });
   });
 
   app.renderer.on(Renderer.EVENT_END, (context) => {
