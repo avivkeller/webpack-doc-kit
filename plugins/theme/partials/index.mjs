@@ -31,41 +31,12 @@ export default (ctx) => ({
   ...ctx.partials,
   ...typePartials,
 
-  signature: (model, options) => {
+  signature(model, options) {
     const comment = options.multipleSignatures
       ? model.comment
       : model.comment || model.parent?.comment;
 
-    const stability = (() => {
-      if (!comment) return null;
-      const deprecated = comment.blockTags?.find(t => t.tag === '@deprecated');
-      const experimental = comment.blockTags?.find(t => t.tag === '@experimental')
-                        ?? comment.blockTags?.find(t => t.tag === '@beta');
-      const legacy = comment.blockTags?.find(t => t.tag === '@legacy');
-
-      if (deprecated) {
-        const desc = deprecated.content?.length
-          ? ctx.helpers.getCommentParts(deprecated.content)
-          : 'Deprecated';
-        return `> Stability: 0 - Deprecated: ${desc}`;
-      }
-      if (experimental) {
-        const desc = experimental.content?.length
-          ? `: ${ctx.helpers.getCommentParts(experimental.content)}`
-          : '';
-        return `> Stability: 1 - Experimental${desc}`;
-      }
-      if (legacy) {
-        const desc = legacy.content?.length
-          ? `: ${ctx.helpers.getCommentParts(legacy.content)}`
-          : '';
-        return `> Stability: 3 - Legacy${desc}`;
-      }
-      return null;
-    })();
-
     return [
-      stability,
       model.parameters?.length &&
         ctx.partials.parametersList(model.parameters, {
           headingLevel: options.headingLevel,
@@ -87,16 +58,7 @@ export default (ctx) => ({
 
   memberTitle(model) {
     if (model.kind === ReflectionKind.Constructor) {
-      const params = model.signatures?.[0]?.parameters ?? [];
-      const className = model.parent?.name ?? model.name;
-      const allOptional = params.length > 0 &&
-                          params.every(p => p.flags?.isOptional);
-      const paramStr = allOptional
-        ? `[${params.map(p => p.name).join(", ")}]`
-        : params.map(p =>
-            p.flags?.isOptional ? `[${p.name}]` : p.name
-          ).join(", ");
-      return `\`new ${className}(${paramStr})\``;
+      return ctx.helpers.buildConstructorTitle(model);
     }
 
     const prefix = getMemberPrefix(model);
@@ -114,7 +76,6 @@ export default (ctx) => ({
         }
       })
       .join("");
-
     return `${prefix}\`${model.name}(${paramsString})\``;
   },
 

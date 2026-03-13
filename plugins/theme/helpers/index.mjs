@@ -30,4 +30,15 @@ export default (ctx) => ({
   typedList(entries) {
     return entries.map(ctx.helpers.typedListItem).join("\n");
   },
+  
+  buildConstructorTitle(model) {
+    const params = model.signatures?.[0]?.parameters ?? [];
+    const className = model.parent?.name ?? model.name;
+    const allOptional =
+      params.length > 0 && params.every((p) => p.flags?.isOptional);
+    const paramStr = allOptional
+      ? `[${params.map((p) => p.name).join(", ")}]`
+      : params.map((p) => (p.flags?.isOptional ? `[${p.name}]` : p.name)).join(", ");
+    return `\`new ${className}(${paramStr})\``;
+  },
 });
