@@ -353,11 +353,11 @@ Block pre walking iterates the scope for block variable declarations
 
 #### `inScope(params, fn)`
 
+> Stability: 0 - Deprecated
+
 * `params` {string|Identifier|Property|MemberExpression|ObjectPattern|ArrayPattern|RestElement|AssignmentPattern[]}
 * `fn` {object}
 * Returns: {void}
-
-##### Deprecated
 
 #### `isAsiPosition(pos)`
 

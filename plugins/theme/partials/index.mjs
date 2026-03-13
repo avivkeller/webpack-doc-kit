@@ -36,7 +36,11 @@ export default (ctx) => ({
       ? model.comment
       : model.comment || model.parent?.comment;
 
+    const stability = ctx.helpers.stabilityBlockquote(comment);
+
     return [
+      stability,
+      stability && "",
       model.typeParameters?.length &&
         ctx.partials.typeParametersList(model.typeParameters, {
           headingLevel: options.headingLevel,
@@ -54,9 +58,10 @@ export default (ctx) => ({
       comment &&
         ctx.partials.comment(comment, {
           headingLevel: options.headingLevel,
+          showTags: false,
         }),
     ]
-      .filter((x) => (typeof x === "string" ? x : Boolean(x)))
+      .filter((x) => typeof x === "string" || Boolean(x))
       .join("\n");
   },
 

@@ -26,17 +26,9 @@
 * `clone` {RuntimeSpecMap}
 * Returns: {RuntimeSpecMap}
 
-### Accessors
+### Properties
 
-#### Accessor: `size`
-
-##### Get Signature
-
-> **get** **size**(): {number}
-
-###### Returns
-
-{number}
+* `size` {number}
 
 ### Methods
 
@@ -92,17 +84,9 @@
 * `iterable` {Iterable}
 * Returns: {RuntimeSpecSet}
 
-### Accessors
+### Properties
 
-#### Accessor: `size`
-
-##### Get Signature
-
-> **get** **size**(): {number}
-
-###### Returns
-
-{number}
+* `size` {number}
 
 ### Methods
 

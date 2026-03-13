@@ -17,61 +17,20 @@
 
 ### Properties
 
+* `category` {string}
+* `disconnect` {any}
 * `expression` {string}
 * `loc` {DependencyLocation}
 * `module` {any}
 * `optional` {boolean}
 * `range` {number|number|number}
 * `runtimeRequirements` {Set}
+* `type` {string}
 * `weak` {boolean}
 * `EXPORTS_OBJECT_REFERENCED` {string[][]}
 * `NO_EXPORTS_REFERENCED` {string[][]}
 * `Template` {ConstDependencyTemplate}
 * `TRANSITIVE` {TRANSITIVE}
-
-### Accessors
-
-#### Accessor: `category`
-
-##### Get Signature
-
-> **get** **category**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`NullDependency`](#nulldependency).[`category`](#category-3)
-
-#### Accessor: `disconnect`
-
-##### Get Signature
-
-> **get** **disconnect**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`NullDependency`](#nulldependency).[`disconnect`](#disconnect-3)
-
-#### Accessor: `type`
-
-##### Get Signature
-
-> **get** **type**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`NullDependency`](#nulldependency).[`type`](#type-3)
 
 ### Methods
 
@@ -125,12 +84,12 @@ implement this method to allow the occurrence order plugin to count correctly
 
 #### `getReference(moduleGraph)`
 
+> Stability: 0 - Deprecated
+
 * `moduleGraph` {ModuleGraph}
 * Returns: {never}
 
 Returns the referenced module and export
-
-##### Deprecated
 
 #### `getReferencedExports(moduleGraph, runtime)`
 
@@ -198,6 +157,8 @@ Update the hash
 ### Properties
 
 * `attributes` {ImportAttributes}
+* `category` {string}
+* `disconnect` {any}
 * `loc` {DependencyLocation}
 * `module` {any}
 * `optional` {boolean}
@@ -205,6 +166,7 @@ Update the hash
 * `range` {number|number}
 * `request` {string}
 * `sourceOrder` {number}
+* `type` {string}
 * `userRequest` {string}
 * `weak` {boolean}
 * `ExportPresenceModes` {object}
@@ -213,50 +175,6 @@ Update the hash
 * `NO_EXPORTS_REFERENCED` {string[][]}
 * `Template` {HarmonyImportDependencyTemplate}
 * `TRANSITIVE` {TRANSITIVE}
-
-### Accessors
-
-#### Accessor: `category`
-
-##### Get Signature
-
-> **get** **category**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`ModuleDependency`](#moduledependency).[`category`](#category-2)
-
-#### Accessor: `disconnect`
-
-##### Get Signature
-
-> **get** **disconnect**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`ModuleDependency`](#moduledependency).[`disconnect`](#disconnect-2)
-
-#### Accessor: `type`
-
-##### Get Signature
-
-> **get** **type**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`ModuleDependency`](#moduledependency).[`type`](#type-2)
 
 ### Methods
 
@@ -333,12 +251,12 @@ implement this method to allow the occurrence order plugin to count correctly
 
 #### `getReference(moduleGraph)`
 
+> Stability: 0 - Deprecated
+
 * `moduleGraph` {ModuleGraph}
 * Returns: {never}
 
 Returns the referenced module and export
-
-##### Deprecated
 
 #### `getReferencedExports(moduleGraph, runtime)`
 
@@ -407,62 +325,21 @@ Update the hash
 
 ### Properties
 
+* `category` {string}
+* `disconnect` {any}
 * `loc` {DependencyLocation}
 * `module` {any}
 * `optional` {boolean}
 * `range` {number|number}
 * `request` {string}
 * `sourceOrder` {number}
+* `type` {string}
 * `userRequest` {string}
 * `weak` {boolean}
 * `EXPORTS_OBJECT_REFERENCED` {string[][]}
 * `NO_EXPORTS_REFERENCED` {string[][]}
 * `Template` {DependencyTemplate}
 * `TRANSITIVE` {TRANSITIVE}
-
-### Accessors
-
-#### Accessor: `category`
-
-##### Get Signature
-
-> **get** **category**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Dependency`](../../globals.md#dependency).[`category`](../../globals.md#category)
-
-#### Accessor: `disconnect`
-
-##### Get Signature
-
-> **get** **disconnect**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Dependency`](../../globals.md#dependency).[`disconnect`](../../globals.md#disconnect)
-
-#### Accessor: `type`
-
-##### Get Signature
-
-> **get** **type**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Dependency`](../../globals.md#dependency).[`type`](../../globals.md#type)
 
 ### Methods
 
@@ -516,12 +393,12 @@ implement this method to allow the occurrence order plugin to count correctly
 
 #### `getReference(moduleGraph)`
 
+> Stability: 0 - Deprecated
+
 * `moduleGraph` {ModuleGraph}
 * Returns: {never}
 
 Returns the referenced module and export
-
-##### Deprecated
 
 #### `getReferencedExports(moduleGraph, runtime)`
 
@@ -588,58 +465,17 @@ Update the hash
 
 ### Properties
 
+* `category` {string}
+* `disconnect` {any}
 * `loc` {DependencyLocation}
 * `module` {any}
 * `optional` {boolean}
+* `type` {string}
 * `weak` {boolean}
 * `EXPORTS_OBJECT_REFERENCED` {string[][]}
 * `NO_EXPORTS_REFERENCED` {string[][]}
 * `Template` {NullDependencyTemplate}
 * `TRANSITIVE` {TRANSITIVE}
-
-### Accessors
-
-#### Accessor: `category`
-
-##### Get Signature
-
-> **get** **category**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Dependency`](../../globals.md#dependency).[`category`](../../globals.md#category)
-
-#### Accessor: `disconnect`
-
-##### Get Signature
-
-> **get** **disconnect**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Dependency`](../../globals.md#dependency).[`disconnect`](../../globals.md#disconnect)
-
-#### Accessor: `type`
-
-##### Get Signature
-
-> **get** **type**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Dependency`](../../globals.md#dependency).[`type`](../../globals.md#type)
 
 ### Methods
 
@@ -693,12 +529,12 @@ implement this method to allow the occurrence order plugin to count correctly
 
 #### `getReference(moduleGraph)`
 
+> Stability: 0 - Deprecated
+
 * `moduleGraph` {ModuleGraph}
 * Returns: {never}
 
 Returns the referenced module and export
-
-##### Deprecated
 
 #### `getReferencedExports(moduleGraph, runtime)`
 

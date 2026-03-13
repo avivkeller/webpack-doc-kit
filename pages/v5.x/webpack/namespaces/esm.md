@@ -20,6 +20,7 @@
 * `buildMeta` {BuildMeta}
 * `chunk` {Chunk}
 * `chunkGraph` {ChunkGraph}
+* `chunksIterable` {Iterable}
 * `codeGenerationDependencies` {Dependency[]}
 * `compilation` {Compilation}
 * `context` {string}
@@ -27,201 +28,40 @@
 * `dependencies` {Dependency[]}
 * `dependentHash` {boolean}
 * `depth` {number}
+* `errors` {any}
+* `exportsArgument` {string}
 * `factoryMeta` {FactoryMeta}
 * `fullHash` {boolean}
+* `hasEqualsChunks` {any}
+* `hash` {string}
 * `hot` {boolean}
 * `id` {string|number} 
 * `index` {number}
 * `index2` {number}
 * `issuer` {Module}
+* `isUsed` {any}
 * `layer` {string}
+* `moduleArgument` {string}
 * `name` {string}
 * `needId` {boolean}
+* `optimizationBailout` {string|object[]} 
+* `optional` {boolean}
 * `parent` {DependenciesBlock}
 * `presentationalDependencies` {Dependency[]}
 * `profile` {ModuleProfile}
+* `renderedHash` {string}
 * `resolveOptions` {ResolveOptions}
 * `stage` {number}
 * `type` {string}
 * `used` {any}
+* `usedExports` {boolean|SortableSet}
 * `useSimpleSourceMap` {boolean}
 * `useSourceMap` {boolean}
+* `warnings` {any}
 * `STAGE_ATTACH` {number} Runtime modules which attach to handlers of other runtime modules
 * `STAGE_BASIC` {number} Runtime modules with simple dependencies on other runtime modules
 * `STAGE_NORMAL` {number} Runtime modules without any dependencies to other runtime modules
 * `STAGE_TRIGGER` {number} Runtime modules which trigger actions on bootstrap
-
-### Accessors
-
-#### Accessor: `chunksIterable`
-
-##### Get Signature
-
-> **get** **chunksIterable**(): {Iterable}
-
-###### Returns
-
-{Iterable}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`chunksIterable`](../../globals.md#chunksiterable-3)
-
-#### Accessor: `errors`
-
-##### Get Signature
-
-> **get** **errors**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`errors`](../../globals.md#errors-4)
-
-#### Accessor: `exportsArgument`
-
-##### Get Signature
-
-> **get** **exportsArgument**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`exportsArgument`](../../globals.md#exportsargument-3)
-
-#### Accessor: `hasEqualsChunks`
-
-##### Get Signature
-
-> **get** **hasEqualsChunks**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`hasEqualsChunks`](../../globals.md#hasequalschunks-3)
-
-#### Accessor: `hash`
-
-##### Get Signature
-
-> **get** **hash**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`hash`](../../globals.md#hash-7)
-
-#### Accessor: `isUsed`
-
-##### Get Signature
-
-> **get** **isUsed**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`isUsed`](../../globals.md#isused-3)
-
-#### Accessor: `moduleArgument`
-
-##### Get Signature
-
-> **get** **moduleArgument**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`moduleArgument`](../../globals.md#moduleargument-3)
-
-#### Accessor: `optimizationBailout`
-
-##### Get Signature
-
-> **get** **optimizationBailout**(): {string|object[]}
-
-###### Deprecated
-
-###### Returns
-
-{string|object[]}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`optimizationBailout`](../../globals.md#optimizationbailout-3)
-
-#### Accessor: `optional`
-
-##### Get Signature
-
-> **get** **optional**(): {boolean}
-
-###### Returns
-
-{boolean}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`optional`](../../globals.md#optional-4)
-
-#### Accessor: `renderedHash`
-
-##### Get Signature
-
-> **get** **renderedHash**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`renderedHash`](../../globals.md#renderedhash-5)
-
-#### Accessor: `usedExports`
-
-##### Get Signature
-
-> **get** **usedExports**(): {boolean|SortableSet}
-
-###### Returns
-
-{boolean|SortableSet}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`usedExports`](../../globals.md#usedexports-3)
-
-#### Accessor: `warnings`
-
-##### Get Signature
-
-> **get** **warnings**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`RuntimeModule`](../../globals.md#runtimemodule).[`warnings`](../../globals.md#warnings-4)
 
 ### Methods
 
@@ -469,13 +309,13 @@ This data will be passed to restoreFromUnsafeCache later.
 
 #### `needRebuild(fileTimestamps, contextTimestamps)`
 
+> Stability: 0 - Deprecated
+
 * `fileTimestamps` {Map}
 * `contextTimestamps` {Map}
 * Returns: {boolean}
 
 Use needBuild instead
-
-##### Deprecated
 
 #### `originalSource()`
 
@@ -512,14 +352,14 @@ Use needBuild instead
 
 #### `source(dependencyTemplates, runtimeTemplate[, type])`
 
+> Stability: 0 - Deprecated
+
 * `dependencyTemplates` {DependencyTemplates}
 * `runtimeTemplate` {RuntimeTemplate}
 * `type` {string}
 * Returns: {Source}
 
 Use codeGeneration() instead
-
-##### Deprecated
 
 #### `updateCacheModule(module)`
 
@@ -543,9 +383,9 @@ and properties.
 
 #### Static method: `getSourceBasicTypes(module)`
 
+> Stability: 0 - Deprecated
+
 * `module` {Module}
 * Returns: {ReadonlySet}
 
 In webpack 6, call getSourceBasicTypes() directly on the module instance instead of using this static method.
-
-##### Deprecated
