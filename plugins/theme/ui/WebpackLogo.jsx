@@ -1,5 +1,11 @@
 const WebpackLogo = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 774 875.7" {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 774 875.7"
+    width="24"
+    height="28"
+    {...props}
+  >
     <path fill="#FFF" d="M387 0l387 218.9v437.9L387 875.7 0 656.8V218.9z" />
     <path
       fill="#8ed6fb"
