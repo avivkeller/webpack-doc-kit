@@ -25,17 +25,9 @@
 * `iterable` {Iterable}
 * Returns: {LazySet}
 
-### Accessors
+### Properties
 
-#### Accessor: `size`
-
-##### Get Signature
-
-> **get** **size**(): {number}
-
-###### Returns
-
-{number}
+* `size` {number}
 
 ### Methods
 

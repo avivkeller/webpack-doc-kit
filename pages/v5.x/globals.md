@@ -48,24 +48,13 @@
 
 * `blocks` {AsyncDependenciesBlock[]}
 * `chunkName` {string}
+* `circular` {boolean}
 * `dependencies` {Dependency[]}
 * `groupOptions` {GroupOptionsAsyncDependenciesBlock}
 * `loc` {SyntheticDependencyLocation|RealDependencyLocation}
 * `module` {any}
 * `parent` {DependenciesBlock}
 * `request` {string}
-
-### Accessors
-
-#### Accessor: `circular`
-
-##### Get Signature
-
-> **get** **circular**(): {boolean}
-
-###### Returns
-
-{boolean}
 
 ### Methods
 
@@ -243,52 +232,21 @@ After this method has succeeded the cache can only be restored when build depend
 * `contentHash` {Record}
 * `cssFilenameTemplate` {string|object}
 * `debugId` {number}
+* `entryModule` {Module} 
 * `extraAsync` {boolean}
 * `filenameTemplate` {string|object}
 * `files` {Set}
+* `groupsIterable` {SortableSet}
 * `hash` {string}
 * `id` {string|number}
 * `idNameHints` {SortableSet}
 * `ids` {ChunkId[]}
+* `modulesIterable` {Iterable}
 * `name` {string}
 * `preventIntegration` {boolean}
 * `rendered` {boolean}
 * `renderedHash` {string}
 * `runtime` {RuntimeSpec}
-
-### Accessors
-
-#### Accessor: `entryModule`
-
-##### Get Signature
-
-> **get** **entryModule**(): {Module}
-
-###### Deprecated
-
-###### Returns
-
-{Module}
-
-#### Accessor: `groupsIterable`
-
-##### Get Signature
-
-> **get** **groupsIterable**(): {SortableSet}
-
-###### Returns
-
-{SortableSet}
-
-#### Accessor: `modulesIterable`
-
-##### Get Signature
-
-> **get** **modulesIterable**(): {Iterable}
-
-###### Returns
-
-{Iterable}
 
 ### Methods
 
@@ -362,10 +320,10 @@ After this method has succeeded the cache can only be restored when build depend
 
 #### `getChunkMaps(realHash)`
 
+> Stability: 0 - Deprecated
+
 * `realHash` {boolean}
 * Returns: {ChunkMaps}
-
-##### Deprecated
 
 #### `getChunkModuleMaps(filterFn)`
 
@@ -957,51 +915,51 @@ After this method has succeeded the cache can only be restored when build depend
 
 #### Static method: `clearChunkGraphForChunk(chunk)`
 
+> Stability: 0 - Deprecated
+
 * `chunk` {Chunk}
 * Returns: {void}
-
-##### Deprecated
 
 #### Static method: `clearChunkGraphForModule(module)`
 
+> Stability: 0 - Deprecated
+
 * `module` {Module}
 * Returns: {void}
-
-##### Deprecated
 
 #### Static method: `getChunkGraphForChunk(chunk, deprecateMessage, deprecationCode)`
 
+> Stability: 0 - Deprecated
+
 * `chunk` {Chunk}
 * `deprecateMessage` {string}
 * `deprecationCode` {string}
 * Returns: {ChunkGraph}
-
-##### Deprecated
 
 #### Static method: `getChunkGraphForModule(module, deprecateMessage, deprecationCode)`
 
+> Stability: 0 - Deprecated
+
 * `module` {Module}
 * `deprecateMessage` {string}
 * `deprecationCode` {string}
 * Returns: {ChunkGraph}
 
-##### Deprecated
-
 #### Static method: `setChunkGraphForChunk(chunk, chunkGraph)`
+
+> Stability: 0 - Deprecated
 
 * `chunk` {Chunk}
 * `chunkGraph` {ChunkGraph}
 * Returns: {void}
 
-##### Deprecated
-
 #### Static method: `setChunkGraphForModule(module, chunkGraph)`
+
+> Stability: 0 - Deprecated
 
 * `module` {Module}
 * `chunkGraph` {ChunkGraph}
 * Returns: {void}
-
-##### Deprecated
 
 ***
 
@@ -1019,81 +977,21 @@ After this method has succeeded the cache can only be restored when build depend
 
 ### Properties
 
+* `asyncEntrypointsIterable` {SortableSet}
+* `blocksIterable` {Iterable}
+* `childrenIterable` {SortableSet}
 * `chunks` {Chunk[]}
+* `debugId` {string} get a uniqueId for ChunkGroup, made up of its member Chunk debugId's
 * `getModuleIndex` {object}
 * `getModuleIndex2` {object}
 * `groupDebugId` {number}
+* `id` {string} get a unique id for ChunkGroup, made up of its member Chunk id's
 * `index` {number}
 * `name` {string} returns the name of current ChunkGroup
 sets a new name for current ChunkGroup
 * `options` {ChunkGroupOptions}
 * `origins` {OriginRecord[]}
-
-### Accessors
-
-#### Accessor: `asyncEntrypointsIterable`
-
-##### Get Signature
-
-> **get** **asyncEntrypointsIterable**(): {SortableSet}
-
-###### Returns
-
-{SortableSet}
-
-#### Accessor: `blocksIterable`
-
-##### Get Signature
-
-> **get** **blocksIterable**(): {Iterable}
-
-###### Returns
-
-{Iterable}
-
-#### Accessor: `childrenIterable`
-
-##### Get Signature
-
-> **get** **childrenIterable**(): {SortableSet}
-
-###### Returns
-
-{SortableSet}
-
-#### Accessor: `debugId`
-
-##### Get Signature
-
-> **get** **debugId**(): {string}
-
-get a uniqueId for ChunkGroup, made up of its member Chunk debugId's
-
-###### Returns
-
-{string}
-
-#### Accessor: `id`
-
-##### Get Signature
-
-> **get** **id**(): {string}
-
-get a unique id for ChunkGroup, made up of its member Chunk id's
-
-###### Returns
-
-{string}
-
-#### Accessor: `parentsIterable`
-
-##### Get Signature
-
-> **get** **parentsIterable**(): {SortableSet}
-
-###### Returns
-
-{SortableSet}
+* `parentsIterable` {SortableSet}
 
 ### Methods
 
@@ -1542,10 +1440,10 @@ If `module` is passed, `loc` and `request` must also be passed.
 
 #### `assignDepth(module)`
 
+> Stability: 0 - Deprecated
+
 * `module` {Module}
 * Returns: {void}
-
-##### Deprecated
 
 #### `assignDepths(modules)`
 
@@ -2180,45 +2078,16 @@ Apply the plugin
 
 ### Properties
 
+* `category` {string}
+* `disconnect` {any}
 * `loc` {DependencyLocation}
 * `module` {any}
 * `optional` {boolean}
+* `type` {string}
 * `weak` {boolean}
 * `EXPORTS_OBJECT_REFERENCED` {string[][]}
 * `NO_EXPORTS_REFERENCED` {string[][]}
 * `TRANSITIVE` {TRANSITIVE}
-
-### Accessors
-
-#### Accessor: `category`
-
-##### Get Signature
-
-> **get** **category**(): {string}
-
-###### Returns
-
-{string}
-
-#### Accessor: `disconnect`
-
-##### Get Signature
-
-> **get** **disconnect**(): {any}
-
-###### Returns
-
-{any}
-
-#### Accessor: `type`
-
-##### Get Signature
-
-> **get** **type**(): {string}
-
-###### Returns
-
-{string}
 
 ### Methods
 
@@ -2272,12 +2141,12 @@ implement this method to allow the occurrence order plugin to count correctly
 
 #### `getReference(moduleGraph)`
 
+> Stability: 0 - Deprecated
+
 * `moduleGraph` {ModuleGraph}
 * Returns: {never}
 
 Returns the referenced module and export
-
-##### Deprecated
 
 #### `getReferencedExports(moduleGraph, runtime)`
 
@@ -2503,105 +2372,21 @@ Apply the plugin
 
 ### Properties
 
+* `asyncEntrypointsIterable` {SortableSet}
+* `blocksIterable` {Iterable}
+* `childrenIterable` {SortableSet}
 * `chunks` {Chunk[]}
+* `debugId` {string} get a uniqueId for ChunkGroup, made up of its member Chunk debugId's
 * `getModuleIndex` {object}
 * `getModuleIndex2` {object}
 * `groupDebugId` {number}
+* `id` {string} get a unique id for ChunkGroup, made up of its member Chunk id's
 * `index` {number}
 * `name` {string} returns the name of current ChunkGroup
 sets a new name for current ChunkGroup
 * `options` {ChunkGroupOptions}
 * `origins` {OriginRecord[]}
-
-### Accessors
-
-#### Accessor: `asyncEntrypointsIterable`
-
-##### Get Signature
-
-> **get** **asyncEntrypointsIterable**(): {SortableSet}
-
-###### Returns
-
-{SortableSet}
-
-##### Inherited from
-
-[`ChunkGroup`](#abstract-chunkgroup).[`asyncEntrypointsIterable`](#asyncentrypointsiterable)
-
-#### Accessor: `blocksIterable`
-
-##### Get Signature
-
-> **get** **blocksIterable**(): {Iterable}
-
-###### Returns
-
-{Iterable}
-
-##### Inherited from
-
-[`ChunkGroup`](#abstract-chunkgroup).[`blocksIterable`](#blocksiterable)
-
-#### Accessor: `childrenIterable`
-
-##### Get Signature
-
-> **get** **childrenIterable**(): {SortableSet}
-
-###### Returns
-
-{SortableSet}
-
-##### Inherited from
-
-[`ChunkGroup`](#abstract-chunkgroup).[`childrenIterable`](#childreniterable)
-
-#### Accessor: `debugId`
-
-##### Get Signature
-
-> **get** **debugId**(): {string}
-
-get a uniqueId for ChunkGroup, made up of its member Chunk debugId's
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`ChunkGroup`](#abstract-chunkgroup).[`debugId`](#debugid-1)
-
-#### Accessor: `id`
-
-##### Get Signature
-
-> **get** **id**(): {string}
-
-get a unique id for ChunkGroup, made up of its member Chunk id's
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`ChunkGroup`](#abstract-chunkgroup).[`id`](#id-1)
-
-#### Accessor: `parentsIterable`
-
-##### Get Signature
-
-> **get** **parentsIterable**(): {SortableSet}
-
-###### Returns
-
-{SortableSet}
-
-##### Inherited from
-
-[`ChunkGroup`](#abstract-chunkgroup).[`parentsIterable`](#parentsiterable)
+* `parentsIterable` {SortableSet}
 
 ### Methods
 
@@ -2919,205 +2704,45 @@ Apply the plugin
 * `blocks` {AsyncDependenciesBlock[]}
 * `buildInfo` {BuildInfo}
 * `buildMeta` {BuildMeta}
+* `chunksIterable` {Iterable}
 * `codeGenerationDependencies` {Dependency[]}
 * `context` {string}
 * `debugId` {number}
 * `dependencies` {Dependency[]}
 * `dependencyMeta` {ImportDependencyMeta|CssImportDependencyMeta|AssetDependencyMeta}
 * `depth` {number}
+* `errors` {any}
+* `exportsArgument` {string}
 * `externalType` {ExternalsType}
 * `factoryMeta` {FactoryMeta}
+* `hasEqualsChunks` {any}
+* `hash` {string}
 * `hot` {boolean}
 * `id` {string|number} 
 * `index` {number}
 * `index2` {number}
 * `issuer` {Module}
+* `isUsed` {any}
 * `layer` {string}
+* `moduleArgument` {string}
 * `needId` {boolean}
+* `optimizationBailout` {string|object[]} 
+* `optional` {boolean}
 * `parent` {DependenciesBlock}
 * `presentationalDependencies` {Dependency[]}
 * `profile` {ModuleProfile}
+* `renderedHash` {string}
 * `request` {ExternalModuleRequest}
 * `resolveOptions` {ResolveOptions}
 * `type` {string}
 * `used` {any}
+* `usedExports` {boolean|SortableSet}
 * `userRequest` {string}
 * `useSimpleSourceMap` {boolean}
 * `useSourceMap` {boolean}
+* `warnings` {any}
 * `getExternalModuleNodeCommonjsInitFragment` {object}
 * `ModuleExternalInitFragment` {ModuleExternalInitFragment}
-
-### Accessors
-
-#### Accessor: `chunksIterable`
-
-##### Get Signature
-
-> **get** **chunksIterable**(): {Iterable}
-
-###### Returns
-
-{Iterable}
-
-##### Inherited from
-
-[`Module`](#module-2).[`chunksIterable`](#chunksiterable-1)
-
-#### Accessor: `errors`
-
-##### Get Signature
-
-> **get** **errors**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`errors`](#errors-2)
-
-#### Accessor: `exportsArgument`
-
-##### Get Signature
-
-> **get** **exportsArgument**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`exportsArgument`](#exportsargument-1)
-
-#### Accessor: `hasEqualsChunks`
-
-##### Get Signature
-
-> **get** **hasEqualsChunks**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`hasEqualsChunks`](#hasequalschunks-1)
-
-#### Accessor: `hash`
-
-##### Get Signature
-
-> **get** **hash**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`hash`](#hash-4)
-
-#### Accessor: `isUsed`
-
-##### Get Signature
-
-> **get** **isUsed**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`isUsed`](#isused-1)
-
-#### Accessor: `moduleArgument`
-
-##### Get Signature
-
-> **get** **moduleArgument**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`moduleArgument`](#moduleargument-1)
-
-#### Accessor: `optimizationBailout`
-
-##### Get Signature
-
-> **get** **optimizationBailout**(): {string|object[]}
-
-###### Deprecated
-
-###### Returns
-
-{string|object[]}
-
-##### Inherited from
-
-[`Module`](#module-2).[`optimizationBailout`](#optimizationbailout-1)
-
-#### Accessor: `optional`
-
-##### Get Signature
-
-> **get** **optional**(): {boolean}
-
-###### Returns
-
-{boolean}
-
-##### Inherited from
-
-[`Module`](#module-2).[`optional`](#optional-2)
-
-#### Accessor: `renderedHash`
-
-##### Get Signature
-
-> **get** **renderedHash**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`renderedHash`](#renderedhash-3)
-
-#### Accessor: `usedExports`
-
-##### Get Signature
-
-> **get** **usedExports**(): {boolean|SortableSet}
-
-###### Returns
-
-{boolean|SortableSet}
-
-##### Inherited from
-
-[`Module`](#module-2).[`usedExports`](#usedexports-1)
-
-#### Accessor: `warnings`
-
-##### Get Signature
-
-> **get** **warnings**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`warnings`](#warnings-2)
 
 ### Methods
 
@@ -3350,13 +2975,13 @@ This data will be passed to restoreFromUnsafeCache later.
 
 #### `needRebuild(fileTimestamps, contextTimestamps)`
 
+> Stability: 0 - Deprecated
+
 * `fileTimestamps` {Map}
 * `contextTimestamps` {Map}
 * Returns: {boolean}
 
 Use needBuild instead
-
-##### Deprecated
 
 #### `originalSource()`
 
@@ -3397,14 +3022,14 @@ restore unsafe cache data
 
 #### `source(dependencyTemplates, runtimeTemplate[, type])`
 
+> Stability: 0 - Deprecated
+
 * `dependencyTemplates` {DependencyTemplates}
 * `runtimeTemplate` {RuntimeTemplate}
 * `type` {string}
 * Returns: {Source}
 
 Use codeGeneration() instead
-
-##### Deprecated
 
 #### `updateCacheModule(module)`
 
@@ -3423,12 +3048,12 @@ and properties.
 
 #### Static method: `getSourceBasicTypes(module)`
 
+> Stability: 0 - Deprecated
+
 * `module` {Module}
 * Returns: {ReadonlySet}
 
 In webpack 6, call getSourceBasicTypes() directly on the module instance instead of using this static method.
-
-##### Deprecated
 
 ***
 
@@ -3547,64 +3172,21 @@ Apply the plugin
 * `contentHash` {Record}
 * `cssFilenameTemplate` {string|object}
 * `debugId` {number}
+* `entryModule` {Module} 
 * `extraAsync` {boolean}
 * `filenameTemplate` {string|object}
 * `files` {Set}
+* `groupsIterable` {SortableSet}
 * `hash` {string}
 * `id` {string|number}
 * `idNameHints` {SortableSet}
 * `ids` {ChunkId[]}
+* `modulesIterable` {Iterable}
 * `name` {string}
 * `preventIntegration` {boolean}
 * `rendered` {boolean}
 * `renderedHash` {string}
 * `runtime` {RuntimeSpec}
-
-### Accessors
-
-#### Accessor: `entryModule`
-
-##### Get Signature
-
-> **get** **entryModule**(): {Module}
-
-###### Deprecated
-
-###### Returns
-
-{Module}
-
-##### Inherited from
-
-[`Chunk`](#chunk).[`entryModule`](#entrymodule)
-
-#### Accessor: `groupsIterable`
-
-##### Get Signature
-
-> **get** **groupsIterable**(): {SortableSet}
-
-###### Returns
-
-{SortableSet}
-
-##### Inherited from
-
-[`Chunk`](#chunk).[`groupsIterable`](#groupsiterable)
-
-#### Accessor: `modulesIterable`
-
-##### Get Signature
-
-> **get** **modulesIterable**(): {Iterable}
-
-###### Returns
-
-{Iterable}
-
-##### Inherited from
-
-[`Chunk`](#chunk).[`modulesIterable`](#modulesiterable)
 
 ### Methods
 
@@ -3678,10 +3260,10 @@ Apply the plugin
 
 #### `getChunkMaps(realHash)`
 
+> Stability: 0 - Deprecated
+
 * `realHash` {boolean}
 * Returns: {ChunkMaps}
-
-##### Deprecated
 
 #### `getChunkModuleMaps(filterFn)`
 
@@ -4123,151 +3705,39 @@ Apply the plugin
 * `blocks` {AsyncDependenciesBlock[]}
 * `buildInfo` {BuildInfo}
 * `buildMeta` {BuildMeta}
+* `chunksIterable` {Iterable}
 * `codeGenerationDependencies` {Dependency[]}
 * `context` {string}
 * `debugId` {number}
 * `dependencies` {Dependency[]}
 * `depth` {number}
+* `errors` {any}
+* `exportsArgument` {string}
 * `factoryMeta` {FactoryMeta}
+* `hasEqualsChunks` {any}
+* `hash` {string}
 * `hot` {boolean}
 * `id` {string|number} 
 * `index` {number}
 * `index2` {number}
 * `issuer` {Module}
+* `isUsed` {any}
 * `layer` {string}
+* `moduleArgument` {string}
 * `needId` {boolean}
+* `optimizationBailout` {string|object[]} 
+* `optional` {boolean}
 * `parent` {DependenciesBlock}
 * `presentationalDependencies` {Dependency[]}
 * `profile` {ModuleProfile}
+* `renderedHash` {string}
 * `resolveOptions` {ResolveOptions}
 * `type` {string}
 * `used` {any}
+* `usedExports` {boolean|SortableSet}
 * `useSimpleSourceMap` {boolean}
 * `useSourceMap` {boolean}
-
-### Accessors
-
-#### Accessor: `chunksIterable`
-
-##### Get Signature
-
-> **get** **chunksIterable**(): {Iterable}
-
-###### Returns
-
-{Iterable}
-
-#### Accessor: `errors`
-
-##### Get Signature
-
-> **get** **errors**(): {any}
-
-###### Returns
-
-{any}
-
-#### Accessor: `exportsArgument`
-
-##### Get Signature
-
-> **get** **exportsArgument**(): {string}
-
-###### Returns
-
-{string}
-
-#### Accessor: `hasEqualsChunks`
-
-##### Get Signature
-
-> **get** **hasEqualsChunks**(): {any}
-
-###### Returns
-
-{any}
-
-#### Accessor: `hash`
-
-##### Get Signature
-
-> **get** **hash**(): {string}
-
-###### Returns
-
-{string}
-
-#### Accessor: `isUsed`
-
-##### Get Signature
-
-> **get** **isUsed**(): {any}
-
-###### Returns
-
-{any}
-
-#### Accessor: `moduleArgument`
-
-##### Get Signature
-
-> **get** **moduleArgument**(): {string}
-
-###### Returns
-
-{string}
-
-#### Accessor: `optimizationBailout`
-
-##### Get Signature
-
-> **get** **optimizationBailout**(): {string|object[]}
-
-###### Deprecated
-
-###### Returns
-
-{string|object[]}
-
-#### Accessor: `optional`
-
-##### Get Signature
-
-> **get** **optional**(): {boolean}
-
-###### Returns
-
-{boolean}
-
-#### Accessor: `renderedHash`
-
-##### Get Signature
-
-> **get** **renderedHash**(): {string}
-
-###### Returns
-
-{string}
-
-#### Accessor: `usedExports`
-
-##### Get Signature
-
-> **get** **usedExports**(): {boolean|SortableSet}
-
-###### Returns
-
-{boolean|SortableSet}
-
-#### Accessor: `warnings`
-
-##### Get Signature
-
-> **get** **warnings**(): {any}
-
-###### Returns
-
-{any}
+* `warnings` {any}
 
 ### Methods
 
@@ -4500,13 +3970,13 @@ This data will be passed to restoreFromUnsafeCache later.
 
 #### `needRebuild(fileTimestamps, contextTimestamps)`
 
+> Stability: 0 - Deprecated
+
 * `fileTimestamps` {Map}
 * `contextTimestamps` {Map}
 * Returns: {boolean}
 
 Use needBuild instead
-
-##### Deprecated
 
 #### `originalSource()`
 
@@ -4539,14 +4009,14 @@ Use needBuild instead
 
 #### `source(dependencyTemplates, runtimeTemplate[, type])`
 
+> Stability: 0 - Deprecated
+
 * `dependencyTemplates` {DependencyTemplates}
 * `runtimeTemplate` {RuntimeTemplate}
 * `type` {string}
 * Returns: {Source}
 
 Use codeGeneration() instead
-
-##### Deprecated
 
 #### `updateCacheModule(module)`
 
@@ -4565,12 +4035,12 @@ and properties.
 
 #### Static method: `getSourceBasicTypes(module)`
 
+> Stability: 0 - Deprecated
+
 * `module` {Module}
 * Returns: {ReadonlySet}
 
 In webpack 6, call getSourceBasicTypes() directly on the module instance instead of using this static method.
-
-##### Deprecated
 
 ***
 
@@ -4939,27 +4409,27 @@ In webpack 6, call getSourceBasicTypes() directly on the module instance instead
 
 #### Static method: `clearModuleGraphForModule(module)`
 
+> Stability: 0 - Deprecated
+
 * `module` {Module}
 * Returns: {void}
 
-##### Deprecated
-
 #### Static method: `getModuleGraphForModule(module, deprecateMessage, deprecationCode)`
+
+> Stability: 0 - Deprecated
 
 * `module` {Module}
 * `deprecateMessage` {string}
 * `deprecationCode` {string}
 * Returns: {ModuleGraph}
 
-##### Deprecated
-
 #### Static method: `setModuleGraphForModule(module, moduleGraph)`
+
+> Stability: 0 - Deprecated
 
 * `module` {Module}
 * `moduleGraph` {ModuleGraph}
 * Returns: {void}
-
-##### Deprecated
 
 ***
 
@@ -4982,6 +4452,7 @@ In webpack 6, call getSourceBasicTypes() directly on the module instance instead
 * `condition` {false|object}
 * `conditional` {boolean}
 * `dependency` {Dependency}
+* `explanation` {string}
 * `explanations` {Set}
 * `module` {Module}
 * `originModule` {Module}
@@ -4991,18 +4462,6 @@ In webpack 6, call getSourceBasicTypes() directly on the module instance instead
 * `addConnectionStates` {object}
 * `CIRCULAR_CONNECTION` {CIRCULAR_CONNECTION}
 * `TRANSITIVE_ONLY` {TRANSITIVE_ONLY}
-
-### Accessors
-
-#### Accessor: `explanation`
-
-##### Get Signature
-
-> **get** **explanation**(): {string}
-
-###### Returns
-
-{string}
 
 ### Methods
 
@@ -5059,31 +4518,11 @@ In webpack 6, call getSourceBasicTypes() directly on the module instance instead
 * `hooks` {Readonly}
 * `inputFileSystem` {InputFileSystem}
 * `intermediateFileSystem` {IntermediateFileSystem}
+* `options` {WebpackOptionsNormalized[]|MultiCompilerOptions}
 * `outputFileSystem` {OutputFileSystem}
+* `outputPath` {string}
 * `running` {boolean}
 * `watchFileSystem` {WatchFileSystem}
-
-### Accessors
-
-#### Accessor: `options`
-
-##### Get Signature
-
-> **get** **options**(): {WebpackOptionsNormalized[]|MultiCompilerOptions}
-
-###### Returns
-
-{WebpackOptionsNormalized[]|MultiCompilerOptions}
-
-#### Accessor: `outputPath`
-
-##### Get Signature
-
-> **get** **outputPath**(): {string}
-
-###### Returns
-
-{string}
 
 ### Methods
 
@@ -5108,14 +4547,14 @@ In webpack 6, call getSourceBasicTypes() directly on the module instance instead
 
 #### `runWithDependencies(compilers, fn, callback)`
 
+> Stability: 0 - Deprecated
+
 * `compilers` {Compiler[]}
 * `fn` {object}
 * `callback` {CallbackWebpackFunction_2}
 * Returns: {void}
 
 This method should have been private
-
-##### Deprecated
 
 #### `setDependencies(compiler, dependencies)`
 
@@ -5146,19 +4585,8 @@ This method should have been private
 
 ### Properties
 
+* `hash` {string}
 * `stats` {Stats[]}
-
-### Accessors
-
-#### Accessor: `hash`
-
-##### Get Signature
-
-> **get** **hash**(): {string}
-
-###### Returns
-
-{string}
 
 ### Methods
 
@@ -5220,212 +4648,52 @@ Apply the plugin
 * `blocks` {AsyncDependenciesBlock[]}
 * `buildInfo` {BuildInfo}
 * `buildMeta` {BuildMeta}
+* `chunksIterable` {Iterable}
 * `codeGenerationDependencies` {Dependency[]}
 * `context` {string}
 * `debugId` {number}
 * `dependencies` {Dependency[]}
 * `depth` {number}
 * `error` {WebpackError}
+* `errors` {any}
+* `exportsArgument` {string}
 * `extractSourceMap` {boolean}
 * `factoryMeta` {FactoryMeta}
 * `generator` {Generator}
 * `generatorOptions` {GeneratorOptions}
+* `hasEqualsChunks` {any}
+* `hash` {string}
 * `hot` {boolean}
 * `id` {string|number} 
 * `index` {number}
 * `index2` {number}
 * `issuer` {Module}
+* `isUsed` {any}
 * `layer` {string}
 * `loaders` {LoaderItem[]}
 * `matchResource` {string}
+* `moduleArgument` {string}
 * `needId` {boolean}
+* `optimizationBailout` {string|object[]} 
+* `optional` {boolean}
 * `parent` {DependenciesBlock}
 * `parser` {ParserClass}
 * `parserOptions` {ParserOptions}
 * `presentationalDependencies` {Dependency[]}
 * `profile` {ModuleProfile}
 * `rawRequest` {string}
+* `renderedHash` {string}
 * `request` {string}
 * `resolveOptions` {ResolveOptions}
 * `resource` {string}
 * `resourceResolveData` {ResourceSchemeData|Partial}
 * `type` {string}
 * `used` {any}
+* `usedExports` {boolean|SortableSet}
 * `userRequest` {string}
 * `useSimpleSourceMap` {boolean}
 * `useSourceMap` {boolean}
-
-### Accessors
-
-#### Accessor: `chunksIterable`
-
-##### Get Signature
-
-> **get** **chunksIterable**(): {Iterable}
-
-###### Returns
-
-{Iterable}
-
-##### Inherited from
-
-[`Module`](#module-2).[`chunksIterable`](#chunksiterable-1)
-
-#### Accessor: `errors`
-
-##### Get Signature
-
-> **get** **errors**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`errors`](#errors-2)
-
-#### Accessor: `exportsArgument`
-
-##### Get Signature
-
-> **get** **exportsArgument**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`exportsArgument`](#exportsargument-1)
-
-#### Accessor: `hasEqualsChunks`
-
-##### Get Signature
-
-> **get** **hasEqualsChunks**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`hasEqualsChunks`](#hasequalschunks-1)
-
-#### Accessor: `hash`
-
-##### Get Signature
-
-> **get** **hash**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`hash`](#hash-4)
-
-#### Accessor: `isUsed`
-
-##### Get Signature
-
-> **get** **isUsed**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`isUsed`](#isused-1)
-
-#### Accessor: `moduleArgument`
-
-##### Get Signature
-
-> **get** **moduleArgument**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`moduleArgument`](#moduleargument-1)
-
-#### Accessor: `optimizationBailout`
-
-##### Get Signature
-
-> **get** **optimizationBailout**(): {string|object[]}
-
-###### Deprecated
-
-###### Returns
-
-{string|object[]}
-
-##### Inherited from
-
-[`Module`](#module-2).[`optimizationBailout`](#optimizationbailout-1)
-
-#### Accessor: `optional`
-
-##### Get Signature
-
-> **get** **optional**(): {boolean}
-
-###### Returns
-
-{boolean}
-
-##### Inherited from
-
-[`Module`](#module-2).[`optional`](#optional-2)
-
-#### Accessor: `renderedHash`
-
-##### Get Signature
-
-> **get** **renderedHash**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`renderedHash`](#renderedhash-3)
-
-#### Accessor: `usedExports`
-
-##### Get Signature
-
-> **get** **usedExports**(): {boolean|SortableSet}
-
-###### Returns
-
-{boolean|SortableSet}
-
-##### Inherited from
-
-[`Module`](#module-2).[`usedExports`](#usedexports-1)
-
-#### Accessor: `warnings`
-
-##### Get Signature
-
-> **get** **warnings**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`warnings`](#warnings-2)
+* `warnings` {any}
 
 ### Methods
 
@@ -5696,13 +4964,13 @@ This data will be passed to restoreFromUnsafeCache later.
 
 #### `needRebuild(fileTimestamps, contextTimestamps)`
 
+> Stability: 0 - Deprecated
+
 * `fileTimestamps` {Map}
 * `contextTimestamps` {Map}
 * Returns: {boolean}
 
 Use needBuild instead
-
-##### Deprecated
 
 #### `originalSource()`
 
@@ -5749,14 +5017,14 @@ restore unsafe cache data
 
 #### `source(dependencyTemplates, runtimeTemplate[, type])`
 
+> Stability: 0 - Deprecated
+
 * `dependencyTemplates` {DependencyTemplates}
 * `runtimeTemplate` {RuntimeTemplate}
 * `type` {string}
 * Returns: {Source}
 
 Use codeGeneration() instead
-
-##### Deprecated
 
 #### `updateCacheModule(module)`
 
@@ -5785,12 +5053,12 @@ and properties.
 
 #### Static method: `getSourceBasicTypes(module)`
 
+> Stability: 0 - Deprecated
+
 * `module` {Module}
 * Returns: {ReadonlySet}
 
 In webpack 6, call getSourceBasicTypes() directly on the module instance instead of using this static method.
-
-##### Deprecated
 
 ***
 
@@ -6068,6 +5336,7 @@ Apply the plugin
 * `buildMeta` {BuildMeta}
 * `chunk` {Chunk}
 * `chunkGraph` {ChunkGraph}
+* `chunksIterable` {Iterable}
 * `codeGenerationDependencies` {Dependency[]}
 * `compilation` {Compilation}
 * `context` {string}
@@ -6075,201 +5344,40 @@ Apply the plugin
 * `dependencies` {Dependency[]}
 * `dependentHash` {boolean}
 * `depth` {number}
+* `errors` {any}
+* `exportsArgument` {string}
 * `factoryMeta` {FactoryMeta}
 * `fullHash` {boolean}
+* `hasEqualsChunks` {any}
+* `hash` {string}
 * `hot` {boolean}
 * `id` {string|number} 
 * `index` {number}
 * `index2` {number}
 * `issuer` {Module}
+* `isUsed` {any}
 * `layer` {string}
+* `moduleArgument` {string}
 * `name` {string}
 * `needId` {boolean}
+* `optimizationBailout` {string|object[]} 
+* `optional` {boolean}
 * `parent` {DependenciesBlock}
 * `presentationalDependencies` {Dependency[]}
 * `profile` {ModuleProfile}
+* `renderedHash` {string}
 * `resolveOptions` {ResolveOptions}
 * `stage` {number}
 * `type` {string}
 * `used` {any}
+* `usedExports` {boolean|SortableSet}
 * `useSimpleSourceMap` {boolean}
 * `useSourceMap` {boolean}
+* `warnings` {any}
 * `STAGE_ATTACH` {number} Runtime modules which attach to handlers of other runtime modules
 * `STAGE_BASIC` {number} Runtime modules with simple dependencies on other runtime modules
 * `STAGE_NORMAL` {number} Runtime modules without any dependencies to other runtime modules
 * `STAGE_TRIGGER` {number} Runtime modules which trigger actions on bootstrap
-
-### Accessors
-
-#### Accessor: `chunksIterable`
-
-##### Get Signature
-
-> **get** **chunksIterable**(): {Iterable}
-
-###### Returns
-
-{Iterable}
-
-##### Inherited from
-
-[`Module`](#module-2).[`chunksIterable`](#chunksiterable-1)
-
-#### Accessor: `errors`
-
-##### Get Signature
-
-> **get** **errors**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`errors`](#errors-2)
-
-#### Accessor: `exportsArgument`
-
-##### Get Signature
-
-> **get** **exportsArgument**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`exportsArgument`](#exportsargument-1)
-
-#### Accessor: `hasEqualsChunks`
-
-##### Get Signature
-
-> **get** **hasEqualsChunks**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`hasEqualsChunks`](#hasequalschunks-1)
-
-#### Accessor: `hash`
-
-##### Get Signature
-
-> **get** **hash**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`hash`](#hash-4)
-
-#### Accessor: `isUsed`
-
-##### Get Signature
-
-> **get** **isUsed**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`isUsed`](#isused-1)
-
-#### Accessor: `moduleArgument`
-
-##### Get Signature
-
-> **get** **moduleArgument**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`moduleArgument`](#moduleargument-1)
-
-#### Accessor: `optimizationBailout`
-
-##### Get Signature
-
-> **get** **optimizationBailout**(): {string|object[]}
-
-###### Deprecated
-
-###### Returns
-
-{string|object[]}
-
-##### Inherited from
-
-[`Module`](#module-2).[`optimizationBailout`](#optimizationbailout-1)
-
-#### Accessor: `optional`
-
-##### Get Signature
-
-> **get** **optional**(): {boolean}
-
-###### Returns
-
-{boolean}
-
-##### Inherited from
-
-[`Module`](#module-2).[`optional`](#optional-2)
-
-#### Accessor: `renderedHash`
-
-##### Get Signature
-
-> **get** **renderedHash**(): {string}
-
-###### Returns
-
-{string}
-
-##### Inherited from
-
-[`Module`](#module-2).[`renderedHash`](#renderedhash-3)
-
-#### Accessor: `usedExports`
-
-##### Get Signature
-
-> **get** **usedExports**(): {boolean|SortableSet}
-
-###### Returns
-
-{boolean|SortableSet}
-
-##### Inherited from
-
-[`Module`](#module-2).[`usedExports`](#usedexports-1)
-
-#### Accessor: `warnings`
-
-##### Get Signature
-
-> **get** **warnings**(): {any}
-
-###### Returns
-
-{any}
-
-##### Inherited from
-
-[`Module`](#module-2).[`warnings`](#warnings-2)
 
 ### Methods
 
@@ -6517,13 +5625,13 @@ This data will be passed to restoreFromUnsafeCache later.
 
 #### `needRebuild(fileTimestamps, contextTimestamps)`
 
+> Stability: 0 - Deprecated
+
 * `fileTimestamps` {Map}
 * `contextTimestamps` {Map}
 * Returns: {boolean}
 
 Use needBuild instead
-
-##### Deprecated
 
 #### `originalSource()`
 
@@ -6560,14 +5668,14 @@ Use needBuild instead
 
 #### `source(dependencyTemplates, runtimeTemplate[, type])`
 
+> Stability: 0 - Deprecated
+
 * `dependencyTemplates` {DependencyTemplates}
 * `runtimeTemplate` {RuntimeTemplate}
 * `type` {string}
 * Returns: {Source}
 
 Use codeGeneration() instead
-
-##### Deprecated
 
 #### `updateCacheModule(module)`
 
@@ -6586,12 +5694,12 @@ and properties.
 
 #### Static method: `getSourceBasicTypes(module)`
 
+> Stability: 0 - Deprecated
+
 * `module` {Module}
 * Returns: {ReadonlySet}
 
 In webpack 6, call getSourceBasicTypes() directly on the module instance instead of using this static method.
-
-##### Deprecated
 
 ***
 
@@ -6636,38 +5744,9 @@ Apply the plugin
 ### Properties
 
 * `compilation` {Compilation}
-
-### Accessors
-
-#### Accessor: `endTime`
-
-##### Get Signature
-
-> **get** **endTime**(): {number}
-
-###### Returns
-
-{number}
-
-#### Accessor: `hash`
-
-##### Get Signature
-
-> **get** **hash**(): {string}
-
-###### Returns
-
-{string}
-
-#### Accessor: `startTime`
-
-##### Get Signature
-
-> **get** **startTime**(): {number}
-
-###### Returns
-
-{number}
+* `endTime` {number}
+* `hash` {string}
+* `startTime` {number}
 
 ### Methods
 
@@ -6959,10 +6038,6 @@ a();
 * `stackTraces` {CallSite[]}
 * Returns: {any}
 
-##### See
-
-https://v8.dev/docs/stack-trace-api#customizing-stack-traces
-
 ***
 
 ## Class: `WebpackOptionsApply`
@@ -7132,10 +6207,6 @@ a();
 * `err` {Error}
 * `stackTraces` {CallSite[]}
 * Returns: {any}
-
-##### See
-
-https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 ***
 
