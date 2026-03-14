@@ -79,23 +79,19 @@ export default (ctx) => ({
     const examples =
       comment?.blockTags?.filter((t) => t.tag === "@example") ?? [];
     if (!examples.length) return "";
-
     const bodies = examples
       .map((tag) => {
         const body = ctx.helpers.getCommentParts(tag.content).trim();
-        if (!body) return null; 
-
+        if (!body) return null;
         if (headingLevel != null) {
           const prefix = "#".repeat(headingLevel + 1);
           const suffix =
             examples.length > 1 ? ` ${examples.indexOf(tag) + 1}` : "";
           return `${prefix} Example${suffix}\n\n${body}`;
         }
-
         return body;
       })
       .filter(Boolean);
-
     return bodies.length ? "\n\n" + bodies.join("\n\n") : "";
   },
 });

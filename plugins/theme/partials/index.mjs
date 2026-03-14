@@ -45,9 +45,7 @@ export default (ctx) => {
       const comment = options.multipleSignatures
         ? model.comment
         : model.comment || model.parent?.comment;
-
       const stability = ctx.helpers.stabilityBlockquote(comment);
-
       return [
         stability,
         stability && "",
