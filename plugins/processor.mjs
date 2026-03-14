@@ -44,10 +44,7 @@ export function load(app) {
         })
         .map((reference) => [
           reference.getFullName(),
-          app.renderer.router
-            .getFullUrl(reference)
-            .replace(".md", ".html")
-            .replace("export=/", ""),
+          app.renderer.router.getFullUrl(reference).replace(".md", ".html"),
         ]),
     );
 
