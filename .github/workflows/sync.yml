@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   sync:
@@ -64,11 +65,17 @@ jobs:
         if: steps.check.outputs.changed == 'true'
         run: npm run generate-docs
 
-      - name: Commit and push
+      - name: Create pull request
         if: steps.check.outputs.changed == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add HEAD_COMMIT pages/
-          git commit -m "chore: sync webpack docs to $(echo ${{ steps.latest.outputs.latest }} | cut -c1-7)"
-          git push
+        uses: gr2m/create-or-update-pull-request-action@b65137ca591da0b9f43bad7b24df13050ea45d1b # v1.10.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commit-message: "chore: sync webpack docs to ${{ steps.latest.outputs.latest }}"
+          title: "chore: sync webpack docs to ${{ steps.latest.outputs.latest }}"
+          body: |
+            Automated update of webpack docs.
+
+            - Latest webpack commit: ${{ steps.latest.outputs.latest }}
+            - Previous commit: ${{ steps.latest.outputs.current }}
+          branch: "chore/sync-webpack"
