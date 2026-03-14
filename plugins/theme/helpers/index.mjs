@@ -65,15 +65,39 @@ export default (ctx) => ({
     return null;
   },
 
-  renderExamples(comment) {
-    if (!comment || !comment.blockTags) return "";
-    const examples = comment.blockTags.filter((tag) => tag.tag === "@example");
+  /**
+   * Renders `@example` tags from a comment as Markdown.
+   * Pass `headingLevel` to prepend a heading (block context);
+   * omit it for inline use (e.g. inside a list item).
+   * Always returns a string — never `null`.
+   *
+   * @param {import("typedoc").Comment | import("typedoc").CommentTag | null | undefined} comment
+   * @param {number} [headingLevel]
+   * @returns {string}
+   */
+  renderExamples(comment, headingLevel) {
+    const examples =
+      comment?.blockTags?.filter((t) => t.tag === "@example") ?? [];
     if (!examples.length) return "";
-    return (
-      "\n\n" +
-      examples
-        .map((tag) => ctx.helpers.getCommentParts(tag.content).trim())
-        .join("\n\n")
-    );
+
+    const bodies = examples
+      .map((tag) => {
+        const body = ctx.helpers.getCommentParts(tag.content).trim();
+        if (!body) return null; // skip empty @example tags
+
+        if (headingLevel != null) {
+          // Block context (signature / comment partial) → add heading
+          const prefix = "#".repeat(headingLevel + 1);
+          const suffix =
+            examples.length > 1 ? ` ${examples.indexOf(tag) + 1}` : "";
+          return `${prefix} Example${suffix}\n\n${body}`;
+        }
+
+        // Inline context (typedListItem) → no heading, just body
+        return body;
+      })
+      .filter(Boolean);
+
+    return bodies.length ? "\n\n" + bodies.join("\n\n") : "";
   },
 });

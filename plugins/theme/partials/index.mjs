@@ -37,7 +37,7 @@ export default (ctx) => {
     comment(model, options) {
       return (
         baseComment.call(ctx, model, { ...options, showTags: false }) +
-        ctx.helpers.renderExamples(model)
+        ctx.helpers.renderExamples(model, options?.headingLevel)
       );
     },
 
@@ -70,7 +70,7 @@ export default (ctx) => {
             headingLevel: options.headingLevel,
             showTags: false,
           }),
-        ctx.helpers.renderExamples(comment),
+        ctx.helpers.renderExamples(comment, options.headingLevel),
       ]
         .filter((x) => typeof x === "string" || Boolean(x))
         .join("\n");
