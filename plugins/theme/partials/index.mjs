@@ -76,29 +76,29 @@ export default (ctx) => {
         .join("\n");
     },
 
-    memberTitle(model) {
-      const prefix = getMemberPrefix(model);
-      const params = model.signatures?.[0]?.parameters;
+  memberTitle(model) {
+    const prefix = getMemberPrefix(model);
+    const params = model.signatures?.[0]?.parameters;
 
-      if (!params) {
-        return `${prefix}\`${model.name}\``;
-      }
+    if (!params) {
+      return `${prefix}\`${model.name}\``;
+    }
 
-      const paramsString = params
-        .map((param, index) => {
-          const paramName = param.name;
-          if (param.flags?.isOptional) {
-            // For optional params, wrap comma + name in brackets (except for first param)
-            return index === 0 ? `[${paramName}]` : `[, ${paramName}]`;
-          } else {
-            // For required params, add comma separator (except for first param)
-            return index === 0 ? paramName : `, ${paramName}`;
-          }
-        })
-        .join("");
+    const paramsString = params
+      .map((param, index) => {
+        const paramName = param.name;
+        if (param.flags?.isOptional) {
+          // For optional params, wrap comma + name in brackets (except for first param)
+          return index === 0 ? `[${paramName}]` : `[, ${paramName}]`;
+        } else {
+          // For required params, add comma separator (except for first param)
+          return index === 0 ? paramName : `, ${paramName}`;
+        }
+      })
+      .join("");
 
-      return `${prefix}\`${model.name}(${paramsString})\``;
-    },
+    return `${prefix}\`${model.name}(${paramsString})\``;
+  },
 
     parametersList: ctx.helpers.typedList,
     typedParametersList: ctx.helpers.typedList,
