@@ -33,9 +33,17 @@ export function load(app) {
     const typeMap = Object.fromEntries(
       context.project
         .getReflectionsByKind(ReflectionKind.All)
-        .filter((ref) => app.renderer.router.hasUrl(ref))
+        .filter((ref) => {
+          // Drop internal TypeDoc artifacts
+          if (ref.name === "export=" || ref.name === "__type") return false;
+          // Drop Reference kind — duplicates of real types
+          if (ref.kind === ReflectionKind.Reference) return false;
+          // Must have a routable page
+          if (!app.renderer.router.hasUrl(ref)) return false;
+          return true;
+        })
         .map((reference) => [
-          reference.name,
+          reference.getFullName(),
           app.renderer.router.getFullUrl(reference).replace(".md", ".html"),
         ]),
     );
