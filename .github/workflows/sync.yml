@@ -71,11 +71,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          commit-message: "chore: sync webpack docs to ${{ steps.latest.outputs.latest }}"
-          title: "chore: sync webpack docs to ${{ steps.latest.outputs.latest }}"
+          commit-message: 'chore: sync webpack docs to ${{ steps.latest.outputs.latest }}'
+          title: 'chore: sync webpack docs to ${{ steps.latest.outputs.latest }}'
           body: |
             Automated update of webpack docs.
 
             - Latest webpack commit: ${{ steps.latest.outputs.latest }}
             - Previous commit: ${{ steps.latest.outputs.current }}
-          branch: "chore/sync-webpack"
+          branch: 'chore/sync-webpack'
