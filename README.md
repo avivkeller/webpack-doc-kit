@@ -52,3 +52,16 @@ When making changes to documentation generation (plugins, `generate-md.mjs`, `ts
 ## License
 
 See the [webpack project](https://github.com/webpack/webpack) for license details.
+
+## Getting Started for Contributors
+
+To get started with this project locally:
+
+1. Clone the repository
+2. Install dependencies using `npm install`
+3. Run `npm run generate-docs` to generate Markdown documentation
+4. Run `npm run build-html` to generate HTML output
+5. Use `npm run build` to run the full pipeline
+6. Ensure code passes lint checks using `npm run lint`
+
+This helps new contributors understand how to run and test the documentation generation pipeline before making changes.
