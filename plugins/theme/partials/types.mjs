@@ -1,11 +1,8 @@
-const union = (arr) => (arr?.length ? arr.map(resolve).join("|") : "unknown");
-
 const resolve = (type) => {
   if (!type) return "unknown";
 
   switch (type.type) {
     case "intrinsic":
-    case "reference":
       return type.name;
 
     case "literal":
@@ -13,41 +10,52 @@ const resolve = (type) => {
         ? JSON.stringify(type.value)
         : String(type.value);
 
+    case "reference":
+      // Preserve generics as doc-kit natively supports them
+      if (type.typeArguments?.length) {
+        return `${type.name}<${type.typeArguments.map(resolve).join(", ")}>`;
+      }
+      return type.name;
+
     case "array":
-      return resolve(type.elementType) + "[]";
+      return `${resolve(type.elementType)}[]`;
 
     case "tuple":
-      return union(type.elements);
+      // Rewrite tuples to Generic representation to satisfy doc-kit limitations
+      return `Tuple<${type.elements?.map(resolve).join(", ") ?? ""}>`;
+
+    case "named-tuple-member":
+      return resolve(type.element);
 
     case "union":
+      return type.types?.map(resolve).join(" | ") ?? "unknown";
+
     case "intersection":
-      return union(type.types);
+      return type.types?.map(resolve).join(" & ") ?? "unknown";
 
+    // Revert all advanced type forms to doc-kit safe fallbacks
     case "optional":
-    case "indexedAccess":
-      return resolve(type.elementType ?? type.objectType);
+      return resolve(type.elementType || type.objectType);
 
-    case "query":
-      return resolve(type.queryType);
+    case "indexedAccess":
+      return resolve(type.objectType);
 
     case "typeOperator":
       return resolve(type.target);
 
     case "conditional":
-      return `${resolve(type.trueType)}|${resolve(type.falseType)}`;
-
-    case "named-tuple-member":
-      return resolve(type.element);
+      return `${resolve(type.trueType)} | ${resolve(type.falseType)}`;
 
     case "reflection":
+    case "template-literal":
+    case "mapped":
       return "object";
 
-    case "inferred":
     case "unknown":
-      return "unknown";
+      return type.name ?? "unknown";
 
     default:
-      return type.name ?? "unknown";
+      return "unknown";
   }
 };
 
