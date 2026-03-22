@@ -1,6 +1,14 @@
 import { Application } from "typedoc";
-import webpack from "./webpack/package.json" with { type: "json" };
 import { major } from "semver";
+
+let webpack;
+try {
+  webpack = (await import("./webpack/package.json", { with: { type: "json" } })).default;
+} catch (e) {
+  console.error("\n❌ ERROR: Sibling './webpack' directory not found.");
+  console.error("Please checkout webpack/webpack next to this repository to generate docs.\n");
+  process.exit(1);
+}
 
 const app = await Application.bootstrapWithPlugins({
   entryPoints: ["./webpack/types.d.ts"],
