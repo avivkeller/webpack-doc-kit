@@ -5,27 +5,27 @@ const resolve = (type) => {
     case "intrinsic":
       return type.name;
 
-    case "reference":
-      if (type.typeArguments?.length) {
-        return `${type.name}<${type.typeArguments.map(resolve).join(", ")}>`;
-      }
-      return type.name;
-
     case "literal":
       return typeof type.value === "string"
         ? JSON.stringify(type.value)
         : String(type.value);
 
+    case "reference":
+      // Preserve generics as doc-kit natively supports them
+      if (type.typeArguments?.length) {
+        return `${type.name}<${type.typeArguments.map(resolve).join(", ")}>`;
+      }
+      return type.name;
+
     case "array":
       return `${resolve(type.elementType)}[]`;
 
     case "tuple":
-      return `[${type.elements?.map(resolve).join(", ") ?? ""}]`;
+      // Rewrite tuples to Generic representation to satisfy doc-kit limitations
+      return `Tuple<${type.elements?.map(resolve).join(", ") ?? ""}>`;
 
     case "named-tuple-member":
-      return type.name
-        ? `${type.name}${type.isOptional ? "?" : ""}: ${resolve(type.element)}`
-        : resolve(type.element);
+      return resolve(type.element);
 
     case "union":
       return type.types?.map(resolve).join(" | ") ?? "unknown";
@@ -33,52 +33,20 @@ const resolve = (type) => {
     case "intersection":
       return type.types?.map(resolve).join(" & ") ?? "unknown";
 
+    // Revert all advanced type forms to doc-kit safe fallbacks
     case "optional":
-      return `${resolve(type.elementType)}?`;
+      return resolve(type.elementType || type.objectType);
 
     case "indexedAccess":
-      return `${resolve(type.objectType)}[${resolve(type.indexType)}]`;
-
-    case "query":
-      return `typeof ${resolve(type.queryType)}`;
+      return resolve(type.objectType);
 
     case "typeOperator":
-      return type.operator
-        ? `${type.operator} ${resolve(type.target)}`
-        : resolve(type.target);
+      return resolve(type.target);
 
     case "conditional":
-      return `${resolve(type.checkType)} extends ${resolve(type.extendsType)} ? ${resolve(type.trueType)} : ${resolve(type.falseType)}`;
+      return `${resolve(type.trueType)} | ${resolve(type.falseType)}`;
 
-    case "reflection": {
-      const decl = type.declaration;
-      if (decl?.signatures?.length) {
-        const sig = decl.signatures[0];
-        const params = (sig.parameters ?? [])
-          .map((p) => `${p.name}: ${resolve(p.type)}`)
-          .join(", ");
-        return `(${params}) => ${sig.type ? resolve(sig.type) : "void"}`;
-      }
-      if (decl?.children?.length) {
-        const props = decl.children
-          .map((c) => `${c.name}${c.flags?.isOptional ? "?" : ""}: ${resolve(c.type)}`)
-          .join("; ");
-        return `{ ${props} }`;
-      }
-      return "object";
-    }
-
-    case "predicate":
-      return type.targetType
-        ? `${type.name} is ${resolve(type.targetType)}`
-        : `${type.name} is unknown`;
-
-    case "rest":
-      return `...${resolve(type.elementType)}`;
-
-    case "inferred":
-      return type.name ? `infer ${type.name}` : "unknown";
-
+    case "reflection":
     case "template-literal":
     case "mapped":
       return "object";
@@ -87,7 +55,7 @@ const resolve = (type) => {
       return type.name ?? "unknown";
 
     default:
-      return type.name ?? "unknown";
+      return "unknown";
   }
 };
 

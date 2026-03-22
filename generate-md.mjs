@@ -1,27 +1,12 @@
 import { Application } from "typedoc";
-import { existsSync } from "node:fs";
-import { join } from "node:path";
+import webpack from "./webpack/package.json" with { type: "json" };
 import { major } from "semver";
 
-const webpackDir = join(import.meta.dirname, "webpack");
-
-if (!existsSync(webpackDir)) {
-  console.error(
-    `[webpack-doc-kit] Missing sibling webpack checkout at ${webpackDir}\n` +
-      `  git clone https://github.com/webpack/webpack.git ../webpack\n` +
-      `  cd ../webpack && git checkout $(cat ../webpack-doc-kit/HEAD_COMMIT)`,
-  );
-  process.exit(1);
-}
-
-const { default: webpack } = await import("./webpack/package.json", {
-  with: { type: "json" },
-});
-
 const app = await Application.bootstrapWithPlugins({
-  entryPoints: [join(webpackDir, "types.d.ts")],
+  entryPoints: ["./webpack/types.d.ts"],
   out: `pages/v${major(webpack.version)}.x`,
 
+  // Plugins
   plugin: [
     "typedoc-plugin-markdown",
     "./plugins/processor.mjs",
@@ -29,6 +14,7 @@ const app = await Application.bootstrapWithPlugins({
   ],
   theme: "doc-kit",
 
+  // Formatting
   hideGroupHeadings: true,
   hideBreadcrumbs: true,
   hidePageHeader: true,
@@ -42,9 +28,6 @@ const app = await Application.bootstrapWithPlugins({
 
 const project = await app.convert();
 
-if (!project) {
-  console.error("[webpack-doc-kit] TypeDoc failed to convert the project.");
-  process.exit(1);
+if (project) {
+  await app.generateOutputs(project);
 }
-
-await app.generateOutputs(project);
